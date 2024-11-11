@@ -22,7 +22,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>PT. Indonesia Sejahtera</b></a>
+    <a href="#"><b>PT. Sehat Sentosa</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
