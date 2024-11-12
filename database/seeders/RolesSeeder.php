@@ -28,7 +28,7 @@ class RolesSeeder extends Seeder
             ],
             [
                 'nama_role' => 'Supervisor',
-                'deskripsi' => 'Pegawai yang menempati jabatan supervisor atau manajer',
+                'deskripsi' => 'Pegawai yang menempati jabatan supervisor dan manajer',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

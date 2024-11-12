@@ -48,6 +48,14 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <input type="date" name="tanggal_lahir" class="form-control" placeholder="Tanggal Lahir">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-calendar"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
           <input type="text" name="username" class="form-control" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">

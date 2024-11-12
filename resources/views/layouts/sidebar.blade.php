@@ -20,9 +20,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('manajemen-pegawai') }}" class="nav-link">
+              <a href="{{ route('data-pegawai') }}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
-                <p>Manajemen Pegawai</p>
+                <p>Data Pegawai</p>
               </a>
             </li>
             <li class="nav-item">
@@ -107,6 +107,26 @@
                   <p>logout</p>
                 </a>
               </li>
+            @endif
+            @if (auth()->check() && auth()->user()->role_id === 4)
+            <li class="nav-item">
+                <a href="profile" class="nav-link">
+                  <i class=" nav-icon fas fa-user"></i>
+                  <p>Profile</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="tambah_pegawai" class="nav-link">
+                  <i class=" nav-icon fas fa-user-plus"></i>
+                  <p>Tambah Pegawai</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="logout" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>logout</p>
+                </a>
+            </li>
             @endif
         </ul>
       </nav>

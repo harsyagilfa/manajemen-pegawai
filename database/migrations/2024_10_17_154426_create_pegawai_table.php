@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('nama');
-            $table->string('jabatan');
-            $table->string('email');
-            $table->string('kontak');
-            $table->string('alamat')->nullable();
-            $table->enum('status', ['aktif', 'non-aktif']);
-            $table->date('tanggal_masuk');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('no_hp');
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('jabatan')->nullable();
+            $table->string('gaji_pokok')->nullable();
+            $table->date('tanggal_masuk')->nullable();
+            $table->enum('status', ['aktif', 'non-aktif']);
             $table->timestamps();
         });
     }

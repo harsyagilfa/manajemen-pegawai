@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DataPegawaiController;
 use App\Http\Controllers\Admin\ManajemenPegawaiController;
 
 /*
@@ -30,9 +31,15 @@ Route::middleware('guest')->group(function(){
 });
 Route::middleware(['auth','role:1'])->group(function(){
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/manajemen-pegawai',[ManajemenPegawaiController::class, 'index'])->name('manajemen-pegawai');
+    Route::get('/data-pegawai',[DataPegawaiController::class, 'index'])->name('data-pegawai');
 });
 Route::middleware(['auth','role:2'])->group(function(){
+    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+});
+Route::middleware(['auth','role:3'])->group(function(){
+    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+});
+Route::middleware(['auth','role:4'])->group(function(){
     Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
 });
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout');

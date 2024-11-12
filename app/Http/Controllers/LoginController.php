@@ -22,7 +22,7 @@ class LoginController extends Controller
        // Cek role_id untuk menentukan redirect
         if ($user->role_id == 1) {
            return redirect('dashboard');
-        }elseif(in_array($user->role_id, [2,3]) ){
+        }elseif(in_array($user->role_id, [2,3,4]) ){
             return redirect()->intended('profile');
         }
      }
