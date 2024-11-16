@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('jenis_kelamin')->nullable();
             $table->string('alamat')->nullable();
             $table->string('jabatan')->nullable();
+            $table->string('divisi')->nullable();
             $table->string('gaji_pokok')->nullable();
             $table->date('tanggal_masuk')->nullable();
+            $table->string('foto')->nullable();
             $table->enum('status', ['aktif', 'non-aktif']);
             $table->timestamps();
         });

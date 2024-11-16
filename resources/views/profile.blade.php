@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .profile-card {
-    width: 50%;
+    width: 70%;
     border-radius: 10px;
     overflow: hidden;
     background-color: #ffffff;
@@ -24,8 +24,8 @@
 }
 
 .profile-image img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 4px solid #4a76a8;
 }
@@ -35,12 +35,15 @@
 }
 
 .profile-details h3 {
-    font-size: 1.3em;
+    font-size: 1.7rem;
     color: #333333;
+    font-weight: 600;
+    margin-bottom: 20px;
+
 }
 
 .profile-details p {
-    font-size: 0.9em;
+    font-size: 1.2em;
     color: #555555;
     margin-top: 5px;
 }
@@ -53,23 +56,32 @@
     justify-content: left;
     margin-left: 20px;
     gap: 5px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 </style>
 <div class="profile-card">
+    @foreach ($pegawai as $p)
     <div class="profile-image">
-        <img src="{{ asset('images/profile.png') }}" alt="Profile Picture">
+        <img src="{{ $p->foto ? asset('storage/assets/admin/' . $p->foto) : asset('assets/default-avatar.png') }}" alt="Profile Picture">
     </div>
     <div class="profile-details">
-        @foreach ($pegawai as $p)
         <h3>{{ $p->user->name }}</h3>
-        <p><strong>Tanggal lahir :</strong> {{ \Carbon\Carbon::parse($p->tanggal_lahir)->translatedFormat('d F Y') }}</p>
-        <p><strong>No HP:</strong> {{ $p->no_hp }}</p>
-        <p><strong>Jabatan:</strong> {{ $p->jabatan }}</p>
-        <p><strong>Gaji Pokok</strong> {{ $p->gaji_pokok }}</p>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Tanggal lahir :</strong> {{ \Carbon\Carbon::parse($p->tanggal_lahir)->translatedFormat('d F Y') }}</p>
+                <p><strong>No HP :</strong> {{ $p->no_hp }}</p>
+                <p><strong>Alamat :</strong> {{ $p->alamat }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Jabatan:</strong> {{ $p->jabatan }}</p>
+                <p><strong>Gaji Pokok</strong> {{ $p->gaji_pokok }}</p>
+                <p><strong>Tanggal Masuk :</strong> {{ \Carbon\Carbon::parse($p->tanggal_masuk)->translatedFormat('d F Y') }}</p>
+            </div>
+        </div>
     </div>
     <div class="profile-buttons">
-        <a class="btn btn-sm btn-success mr-1" href="#"><i class="fas fa-edit"></i></a>
+        <a class="btn btn-success mr-1" href="{{ route('profile.update') }}"><i class="fas fa-edit"></i></a>
+    @endforeach
     </div>
-        @endforeach
+</div>
 @endsection

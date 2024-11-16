@@ -18,6 +18,7 @@ class Pegawai extends Model
         'jabatan',
         'gaji_pokok',
         'tanggal_masuk',
+        'foto',
         'status',
     ];
     public function user()
