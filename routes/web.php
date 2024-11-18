@@ -33,15 +33,21 @@ Route::middleware('guest')->group(function(){
 Route::middleware(['auth','role:1'])->group(function(){
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::get('/data-pegawai',[DataPegawaiController::class, 'index'])->name('data.pegawai');
+    Route::get('/detail-pegawai/{id}',[DataPegawaiController::class, 'detail'])->name('detail.pegawai');
     Route::get('/tambah-pegawai',[DataPegawaiController::class, 'tambah_pegawai'])->name('tambah.pegawai');
+    Route::post('/tambah-pegawai',[DataPegawaiController::class, 'tambah_pegawai_aksi'])->name('tambah.pegawai.aksi');
     Route::get('/edit-pegawai/{id}',[DataPegawaiController::class, 'edit_pegawai'])->name('edit.pegawai');
     Route::put('/edit-pegawai-aksi/{id}',[DataPegawaiController::class, 'edit_pegawai_aksi'])->name('edit.pegawai.aksi');
+    Route::get('/delete-pegawai/{id}',[DataPegawaiController::class, 'delete_pegawai'])->name('delete.pegawai');
+});
+Route::middleware(['auth','role:2,3'])->group(function(){
+    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
 });
 Route::middleware(['auth','role:2'])->group(function(){
-    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+
 });
 Route::middleware(['auth','role:3'])->group(function(){
-    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+
 });
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
 Route::get('/error',[ErrorController::class, 'index'])->name('error');

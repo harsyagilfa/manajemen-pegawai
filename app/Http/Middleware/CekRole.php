@@ -22,11 +22,14 @@ class CekRole
         // Ambil role_id pengguna yang login
         $userRole = Auth::user()->role_id;
         if (!is_array($roles)) {
-            $roles = explode(',', $roles); // Mengonversi string ke array jika perlu
+            $roles = explode(',', $roles);
         }
+
         if (!in_array($userRole, $roles)) {
             return redirect()->route('error');
         }
+
+
         return $next($request);
     }
 }

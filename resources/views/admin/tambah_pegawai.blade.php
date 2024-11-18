@@ -2,12 +2,7 @@
 @section('title','Tambah Data Pegawai')
 @section('content')
 <div class="container">
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('tambah.pegawai.aksi') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-4">
@@ -25,30 +20,25 @@
                 </div>
                 <div class="form-group">
                     <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" class="form-control">
-                        <option value="">Silahkan Pilih</option>
+                    <select name="jenis_kelamin"  class="form-control">
+                        <option value=""disabled selected>Silahkan Pilih</option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Alamat</label>
-                    <textarea name="alamat" class="form-control" id="" cols="30" rows="3" required></textarea>
+                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="3" required></textarea>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Jabatan</label>
-                    <input type="text" name="jabatan" class="form-control" value="" required>
+                    <input type="text" name="jabatan" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>divisi</label>
-                    <select name="divisi_id" class="form-control">
-                        <option value="" disabled selected>Pilih divisi</option>
-                        @foreach($divisi as $d)
-                          <option value="{{ $d->id }}">{{ $d->nama_divisi }}</option>
-                      @endforeach
-                      </select>
+                    <input type="text" name="divisi" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="no_hp">Gaji Pokok</label>
@@ -57,6 +47,10 @@
                 <div class="form-group">
                     <label>Tanggal Masuk</label>
                     <input type="date" name="tanggal_masuk" class="form-control" value="" required>
+                </div>
+                <div class="form-group">
+                    <label>Foto</label>
+                    <input type="file" name="foto" class="form-control">
                 </div>
             </div>
             <div class="col-md-4">
@@ -69,11 +63,10 @@
                       @endforeach
                       </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="jenis_kelamin">Status</label>
+                    <label>Status</label>
                     <select name="status" class="form-control">
-                        <option value="">Silahkan Pilih</option>
+                        <option value=""disabled selected>Silahkan Pilih</option>
                         <option value="aktif">Aktif</option>
                         <option value="non-aktif">Tidak Aktif</option>
                     </select>

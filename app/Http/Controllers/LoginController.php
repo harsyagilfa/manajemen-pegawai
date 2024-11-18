@@ -20,13 +20,17 @@ class LoginController extends Controller
        // Ambil user yang sedang login
         $user = Auth::user();
        // Cek role_id untuk menentukan redirect
-        if ($user->role_id == 1) {
-           return redirect('dashboard');
-        }elseif(in_array($user->role_id, [2,3,4]) ){
-            return redirect()->intended('profile');
+       if ($user->role_id == 1) {
+        return redirect()->route('dashboard');
+        } elseif ($user->role_id == 2) {
+            return redirect()->route('profile');
+        } elseif ($user->role_id == 3) {
+            return redirect()->route('profile');
+        } else {
+            return redirect()->route('error'); // Role tidak valid
         }
      }
-    return redirect()->back()->withErrors(['loginError' => 'Invalid credentials']);
+        return redirect()->route('login')->with('error', 'Login gagal!');
     }
     public function logout(Request $request)
     {

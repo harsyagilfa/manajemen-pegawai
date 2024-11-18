@@ -85,6 +85,12 @@
             @if (auth()->check() && auth()->user()->role_id === 3)
             <li class="nav-item">
                 <a href="profile" class="nav-link">
+                  <i class=" nav-icon fas fa-user"></i>
+                  <p>Profile</p>
+                </a>
+              </li>
+            <li class="nav-item">
+                <a href="profile" class="nav-link">
                   <i class=" nav-icon fas fa-calendar-week"></i>
                   <p>Absensi Tim</p>
                 </a>

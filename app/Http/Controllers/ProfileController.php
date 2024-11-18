@@ -11,8 +11,11 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $pegawai = Pegawai::with('user')->get();
-        return view('profile', compact('pegawai'));
+        $user = auth()->user();
+
+        // Ambil data pegawai yang berelasi dengan user
+        $pegawai = Pegawai::where('user_id', $user->id)->first();
+        return view('profile', compact('user','pegawai'));
     }
     public function update()
     {

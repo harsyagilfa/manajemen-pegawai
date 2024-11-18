@@ -37,9 +37,9 @@
                                 <td>{{ $p->jabatan }}</td>
                                 <td>{{ 'Rp. ' . number_format($p->gaji_pokok, 0, ',', '.') }}</td>
                                 <td style="width: 150px">
-                                    <a class="btn btn-sm btn-primary mr-1" href="#"><i class="fas fa-eye"></i></a>
+                                    <a class="btn btn-sm btn-primary mr-1" href="{{ route('detail.pegawai',$p->id) }}"><i class="fas fa-eye"></i></a>
                                     <a class="btn btn-sm btn-success mr-1" href="{{ route('edit.pegawai', $p->id) }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-sm btn-danger mr-1" href="#"><i class="fas fa-trash" ></i></a>
+                                    <a class="btn btn-sm btn-danger mr-1" href="{{ route('delete.pegawai', $p->id) }}" onclick="return confirm('Hapus data ini?')"><i class="fas fa-trash" ></i></a>
                                 </td>
                             </tr>
                             @empty
