@@ -39,15 +39,15 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Jabatan:</label>
-                    <input type="text" name="jabatan" class="form-control" value="{{ old('gaji_pokok', $pegawai->gaji_pokok) }}" required>
+                    <input type="text" name="jabatan" class="form-control" value="{{ old('jabatan', $pegawai->jabatan) }}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="no_hp">Gaji Pokok:</label>
-                    <input type="number" name="gaji_pokok" class="form-control" value="{{ old('gaji_pokok', $pegawai->gaji_pokok) }}" required>
+                    <input type="number" name="gaji_pokok" class="form-control" value="{{ old('gaji_pokok', $pegawai->gaji_pokok) }}" readonly>
                 </div>
                 <div class="form-group">
                     <label>Tanggal Masuk:</label>
-                    <input type="date" name="tanggal_masuk" class="form-control" value="{{ old('tanggal_masuk', $pegawai->tanggal_masuk) }}" required>
+                    <input type="date" name="tanggal_masuk" class="form-control" value="{{ old('tanggal_masuk', $pegawai->tanggal_masuk) }}" readonly>
                 </div>
                 <div class="form-group">
                     <label>Foto:</label>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label for="username">Username:</label>
-                    <input type="text" name="username" class="form-control" value="{{ old('username', $user->username) }}" required>
+                    <input type="text" name="username" class="form-control" value="{{ old('username', $user->username) }}" readonly>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-3"><i class="fas fa-save"></i> Save</button>

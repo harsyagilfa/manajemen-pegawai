@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Detail Pegawai')
+@section('title','Profile Supervisor')
 @section('content')
 <style>
     .profile-card {
@@ -23,8 +23,8 @@
 }
 
 .profile-image img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 4px solid #4a76a8;
 }
@@ -58,26 +58,28 @@
     padding-bottom: 30px;
 }
 </style>
-
 <div class="profile-card">
     <div class="profile-image">
         <img src="{{ $pegawai->foto ? asset('storage/assets/admin/' . $pegawai->foto) : asset('assets/default-avatar.png') }}" alt="Profile Picture">
     </div>
     <div class="profile-details">
-        <h3>{{ $pegawai->user->name }}</h3>
+        <h3>{{ $user->name }}</h3>
+
         <div class="row">
             <div class="col-md-6">
-                <p><strong>Tanggal lahir: </strong> {{ \Carbon\Carbon::parse($pegawai->tanggal_lahir)->translatedFormat('d F Y') }}</p>
-                <p><strong>No HP: </strong> {{ $pegawai->no_hp }}</p>
-                <p><strong>Alamat: </strong> {{ $pegawai->alamat }}</p>
+                <p><strong>Tanggal lahir :</strong> {{ \Carbon\Carbon::parse($pegawai->tanggal_lahir)->translatedFormat('d F Y') }}</p>
+                <p><strong>No HP :</strong> {{ $pegawai->no_hp }}</p>
+                <p><strong>Alamat :</strong> {{ $pegawai->alamat }}</p>
             </div>
             <div class="col-md-6">
-                <p><strong>Jabatan: </strong> {{ $pegawai->jabatan }}</p>
-                <p><strong>Gaji Pokok: </strong> {{ 'Rp. ' . number_format($pegawai->gaji_pokok, 0, ',', '.') }}</p>
-                <p><strong>Tanggal Masuk: </strong> {{ \Carbon\Carbon::parse($pegawai->tanggal_masuk)->translatedFormat('d F Y') }}</p>
+                <p><strong>Jabatan:</strong> {{ $pegawai->jabatan }}</p>
+                <p><strong>Gaji Pokok</strong> {{ $pegawai->gaji_pokok }}</p>
+                <p><strong>Tanggal Masuk :</strong> {{ \Carbon\Carbon::parse($pegawai->tanggal_masuk)->translatedFormat('d F Y') }}</p>
             </div>
-
         </div>
+    </div>
+    <div class="profile-buttons">
+        <a class="btn btn-success mr-1" href="{{ route('profile.update') }}"><i class="fas fa-edit"></i></a>
     </div>
 </div>
 @endsection

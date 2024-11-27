@@ -22,6 +22,7 @@
                             <th>Nama Pegawai</th>
                             <th>Tanggal Lahir</th>
                             <th>Jenis Kelamin</th>
+                            <th>Divisi</th>
                             <th>Jabatan</th>
                             <th>Gaji</th>
                             <th>Action</th>
@@ -34,6 +35,7 @@
                                 <td>{{ $p->user->name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($p->tanggal_lahir)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $p->jenis_kelamin }}</td>
+                                <td>{{ $p->divisi }}</td>
                                 <td>{{ $p->jabatan }}</td>
                                 <td>{{ 'Rp. ' . number_format($p->gaji_pokok, 0, ',', '.') }}</td>
                                 <td style="width: 150px">

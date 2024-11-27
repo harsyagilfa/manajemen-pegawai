@@ -69,8 +69,8 @@ class DataPegawaiController extends Controller
         $pegawai->status = $request->status;
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto')->store('assets/admin', 'public');
-            $pegawai->foto = $foto;
+            $path = $request->file('foto')->store('assets/admin', 'public');
+            $pegawai->foto = basename($path);
         }
         $pegawai->save();
         return redirect()->route('data.pegawai')->with('status', 'Data Pegawai berhasil ditambah.');
@@ -110,8 +110,14 @@ class DataPegawaiController extends Controller
         $pegawai->tanggal_masuk     = $request->tanggal_masuk;
 
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('assets/admin', 'public');
-            $pegawai->foto = $fotoPath;
+            // Hapus foto lama jika ada
+            if ($pegawai->foto && Storage::exists('public/assets/admin/' . $pegawai->foto)) {
+                Storage::delete('public/assets/admin/' . $pegawai->foto);
+            }
+            // Simpan foto baru ke folder public/assets/admin
+            $path = $request->file('foto')->store('assets/admin', 'public');
+            // Simpan nama file foto ke database
+            $pegawai->foto = basename($path); // hanya menyimpan nama file
         }
         $pegawai->save();
 
@@ -121,11 +127,11 @@ class DataPegawaiController extends Controller
     public function delete_pegawai($id)
     {
         $pegawai = Pegawai::findOrFail($id);
-        if ($pegawai->foto) {
-            Storage::disk('public')->delete('assets/admin/' . $pegawai->foto);
+        if ($pegawai->foto && Storage::exists('public/assets/admin/' . $pegawai->foto)) {
+            Storage::delete('public/assets/admin/' . $pegawai->foto);
         }
         $pegawai->user->delete();
         $pegawai->delete();
-        return redirect()->route('data.pegawai')->with('delete', 'Data Pegawai berhasil Diubah.');
+        return redirect()->route('data.pegawai')->with('delete', 'Data Pegawai berhasil Dihapus.');
     }
 }

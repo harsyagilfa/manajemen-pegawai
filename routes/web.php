@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DataPegawaiController;
 use App\Http\Controllers\Admin\ManajemenPegawaiController;
 use App\Http\Controllers\SuperAdmin\TambahPegawaiController;
+use App\Http\Controllers\Supervisor\ProfileSupervisorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,9 @@ Route::middleware('guest')->group(function(){
     Route::get('/register',[RegisterController::class, 'index'])->name('Register');
     Route::post('/register',[RegisterController::class, 'register'])->name('Register.proses');
 });
+Route::middleware(['auth'])->group(function(){
+    Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
+});
 Route::middleware(['auth','role:1'])->group(function(){
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::get('/data-pegawai',[DataPegawaiController::class, 'index'])->name('data.pegawai');
@@ -40,14 +45,14 @@ Route::middleware(['auth','role:1'])->group(function(){
     Route::put('/edit-pegawai-aksi/{id}',[DataPegawaiController::class, 'edit_pegawai_aksi'])->name('edit.pegawai.aksi');
     Route::get('/delete-pegawai/{id}',[DataPegawaiController::class, 'delete_pegawai'])->name('delete.pegawai');
 });
-Route::middleware(['auth','role:2,3'])->group(function(){
-    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
-});
-Route::middleware(['auth','role:2'])->group(function(){
 
+Route::middleware(['auth','role:2'])->group(function(){
+    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile-update',[ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile-update',[ProfileController::class, 'update_aksi'])->name('profile.update.aksi');
 });
 Route::middleware(['auth','role:3'])->group(function(){
-
+    Route::get('/profile-supervisor',[ProfileSupervisorController::class, 'index'])->name('profile.supervisor');
 });
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
 Route::get('/error',[ErrorController::class, 'index'])->name('error');

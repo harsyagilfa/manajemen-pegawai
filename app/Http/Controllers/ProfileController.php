@@ -25,6 +25,7 @@ class ProfileController extends Controller
     }
     public function update_aksi(Request $request)
     {
+
         $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,' . Auth::id(),
@@ -33,10 +34,11 @@ class ProfileController extends Controller
             'jenis_kelamin' => 'required|string|max:10',
             'alamat' => 'required|string|max:255',
             'jabatan' => 'required|string|max:100',
-            'gaji_pokok' => 'required|numeric',
+            'gaji_pokok' => 'required',
             'tanggal_masuk' => 'required|date',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Validasi foto
         ]);
+        // dd($request->all());
         // Update data di tabel `users`
         $user = Auth::user();
         $user->name = $request->name;
@@ -44,14 +46,14 @@ class ProfileController extends Controller
         $user->save();
 
         // Update data di tabel `pegawai`
-        $pegawai = Pegawai::where('user_id', $user->id)->first();
-        $pegawai->tanggal_lahir = $request->tanggal_lahir;
-        $pegawai->no_hp = $request->no_hp;
-        $pegawai->jenis_kelamin = $request->jenis_kelamin;
-        $pegawai->alamat = $request->alamat;
-        $pegawai->jabatan = $request->jabatan;
-        $pegawai->gaji_pokok = $request->gaji_pokok;
-        $pegawai->tanggal_masuk = $request->tanggal_masuk;
+        $pegawai                    = Pegawai::where('user_id', $user->id)->first();
+        $pegawai->tanggal_lahir     = $request->tanggal_lahir;
+        $pegawai->no_hp             = $request->no_hp;
+        $pegawai->jenis_kelamin     = $request->jenis_kelamin;
+        $pegawai->alamat            = $request->alamat;
+        $pegawai->jabatan           = $request->jabatan;
+        $pegawai->gaji_pokok        = $request->gaji_pokok;
+        $pegawai->tanggal_masuk     = $request->tanggal_masuk;
 
         if ($request->hasFile('foto')) {
             // Hapus foto lama jika ada

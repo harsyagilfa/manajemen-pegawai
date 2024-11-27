@@ -60,7 +60,7 @@
 </style>
 <div class="profile-card">
     <div class="profile-image">
-        <img src="{{ $pegawai->foto ? asset('storage/' . $pegawai->foto) : asset('assets/default-avatar.png') }}" alt="Profile Picture">
+        <img src="{{ $pegawai->foto ? asset('storage/assets/admin/' . $pegawai->foto) : asset('assets/default-avatar.png') }}" alt="Profile Picture">
     </div>
     <div class="profile-details">
         <h3>{{ $user->name }}</h3>
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="profile-buttons">
-        {{-- <a class="btn btn-success mr-1" href="{{ route('profile.update') }}"><i class="fas fa-edit"></i></a> --}}
+        <a class="btn btn-success mr-1" href="{{ route('profile.update') }}"><i class="fas fa-edit"></i></a>
     </div>
 </div>
 @endsection

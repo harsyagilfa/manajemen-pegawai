@@ -65,7 +65,7 @@
                     <label for="foto">Foto</label>
                     <input type="file" name="foto" class="form-control">
                     @if($pegawai->foto)
-                        <img src="{{ asset('storage/' . $pegawai->foto) }}" alt="Foto Pegawai" width="100">
+                        <img src="{{ asset('storage/assets/admin/' . $pegawai->foto) }}" alt="Foto Pegawai" width="100">
                     @endif
                 </div>
             </div>

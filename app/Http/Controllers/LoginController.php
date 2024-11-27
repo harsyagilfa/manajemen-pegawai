@@ -25,7 +25,7 @@ class LoginController extends Controller
         } elseif ($user->role_id == 2) {
             return redirect()->route('profile');
         } elseif ($user->role_id == 3) {
-            return redirect()->route('profile');
+            return redirect()->route('profile.supervisor');
         } else {
             return redirect()->route('error'); // Role tidak valid
         }

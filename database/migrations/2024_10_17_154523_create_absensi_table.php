@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pegawai_id');
-            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
-            $table->date('tanggal');
+            $table->date('tanggal_absensi');
+            $table->string('foto_in')->nullable();
+            $table->string('foto_out')->nullable();
             $table->time('check_in');
             $table->time('check_out')->nullable();
-            $table->string('gps_location')->nullable();
+            $table->string('gps_location_in')->nullable();
+            $table->string('gps_location_out')->nullable();
             $table->enum('status', ['ontime', 'terlambat', 'tidak hadir']);
             $table->timestamps();
+
+            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
         });
     }
 
